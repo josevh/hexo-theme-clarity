@@ -1,0 +1,55 @@
+<nav id="top-nav" class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <% if (theme.navbar_brand){ %>
+        <a class="navbar-brand" href="<%- config.root %><%= page.lang === config.language['0'] ? '' : page.lang + '/' %>"><%- theme.navbar_brand %></a>
+      <% } %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="<%= path.indexOf('blog/') !== -1 ? 'active' : '' %>">
+          <% if (page.lang === config.language['0']){ %>
+            <a href="<%- url_for(config.index_generator.path) %>">Blog</a>
+          <% } else { %>
+            <a href="<%- url_for(page.lang + '/' + config.index_generator.path) %>">Blog</a>
+          <% } %>
+        </li>
+        <% site.pages.forEach(function(p){ %>
+          <% if (p.in_nav && p.lang === page.lang){ %>
+            <li class="<%= is_current(p.path) ? 'active' : '' %>">
+              <a class="<%= is_current(p.path) ? 'active' : '' %>"
+                 href="<%- url_for(p.path) %>"><%= p.title %></a></li>
+           <% } %>
+        <% }); %>
+        <% if (config.language !== null && config.language.length > 1){ %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= page.lang %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% for (var i in config.language){ %>
+                <% if(page.lang !== config.language[i] && config.language[i] !== 'default'){ %>
+                <%# assumed that default language is at root, not at '/{:lang}/' %>
+                  <li><a href="<%= i === '0' ? config.root : '/' + config.language[i] + '/' %>"><%= config.language[i] %></a></li>
+                <% } %>
+              <% } %>
+            </ul>
+          </li>
+        <% } %>
+        <!--
+          <% if (theme.rss){ %>
+            <li><a href="<%- theme.rss %>" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+          <% } %>
+        -->
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
