@@ -2,7 +2,7 @@
 
 Based on [Hexo Bootstrap Blog](https://github.com/cgmartin/hexo-theme-bootstrap-blog) theme.
 
-1) Install theme:
+### Install
 
 ```bash
 $ git clone https://github.com/josevh/hexo-theme-clarity.git themes/clarity
@@ -28,3 +28,5 @@ cd themes/clarity
 git pull
 ```
 
+#### Screenshot
+![Screenshot](screenshot.png)
