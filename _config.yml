@@ -5,9 +5,6 @@ menu:
   Archives: archives/
 rss: /atom.xml
 
-# Content
-excerpt_link: Read More
-
 # Miscellaneous
 google_analytics:
 favicon:
