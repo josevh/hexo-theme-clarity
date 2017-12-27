@@ -25,7 +25,7 @@
     <meta name="author" content="<%= config.author %>">
   <% } %>
   <% if (config.description || page.excerpt){ %>
-    <meta name="description" content="<% if (is_post() && page.excerpt){ %><%= page.excerpt %><% } else { %><%= config.description %><% } %>">
+    <meta name="description" content="<% if (is_post() && page.excerpt){ %><%= strip_html(page.excerpt) %><% } else { %><%= config.description %><% } %>">
   <% } %>
   <% if (config.url){ %>
     <meta name="url" content="<%= config.url %>">
