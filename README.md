@@ -15,6 +15,9 @@ language:
 theme_config:
   # Header
   navbar_brand: <img src="/navbrand.png">
+  # Miscellaneous
+  google_analytics:
+  favicon: /favicon.png
 ```
 
 ### Enable
