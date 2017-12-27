@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <% if (config.root !== '/' || site.pages.length > 0 || config.language.length > 2) { %>
+      <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -14,15 +14,15 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <% if (config.root !== '/' || site.pages.length > 0 || config.language.length > 2) { %>
+    <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
       <div class="collapse navbar-collapse" id="main-menu-navbar">
         <ul class="nav navbar-nav navbar-right">
-          <% if (config.root !== '/'){ %>
-            <li class="<%= path.indexOf(config.root + '/') !== -1 ? 'active' : '' %>">
+          <% if (config.index_generator.path !== ''){ %>
+            <li class="<%= path.indexOf(config.index_generator.path + '/') !== -1 ? 'active' : '' %>">
               <% if (page.lang === config.language['0']){ %>
-                <a href="<%- url_for(config.index_generator.path) %>">config.root</a>
+                <a href="<%- url_for(config.index_generator.path) %>"><%= config.index_generator.path %></a>
               <% } else { %>
-                <a href="<%- url_for(page.lang + '/' + config.index_generator.path) %>">config.root</a>
+                <a href="<%- url_for(page.lang + '/' + config.index_generator.path) %>"><%= config.index_generator.path %></a>
               <% } %>
             <% } %>
           </li>
