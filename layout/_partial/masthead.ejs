@@ -26,23 +26,17 @@
               <% } %>
             <% } %>
           </li>
-          <% site.pages.forEach(function(p){ %>
-            <% if (p.in_nav && p.lang === page.lang){ %>
+          <% site.pages.filter(function(p){ return p.in_nav && p.lang === page.lang; }).forEach(function(p){ %>
               <li class="<%= is_current(p.path) ? 'active' : '' %>">
-                <a class="<%= is_current(p.path) ? 'active' : '' %>"
-                   href="<%- url_for(p.path) %>"><%= p.title %></a></li>
-             <% } %>
+                <a href="<%- url_for(p.path) %>"><%= p.title %></a></li>
           <% }); %>
           <% if (config.language !== null && config.language.length > 2){ %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= page.lang %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <% for (var i in config.language){ %>
-                  <% if(page.lang !== config.language[i] && config.language[i] !== 'default'){ %>
-                  <%# assumed that default language is at root, not at '/{:lang}/' %>
-                    <li><a href="<%= i === '0' ? config.root : '/' + config.language[i] + '/' %>"><%= config.language[i] %></a></li>
-                  <% } %>
-                <% } %>
+                <% config.language.filter(function (l) { return page.lang != l && l !== 'default' }).forEach(function (lang, idx) { %>
+                  <li><a href="<%= idx === '0' ? config.root : '/' + lang + '/' %>"><%= lang %></a></li>
+                <% })%>
               </ul>
             </li>
           <% } %>
@@ -52,7 +46,7 @@
             <% } %>
           -->
         </ul>
-  
+
       </div><!-- /.navbar-collapse -->
     <% } %>
   </div><!-- /.container-fluid -->
