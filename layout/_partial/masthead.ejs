@@ -1,6 +1,5 @@
 <nav id="top-nav" class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
@@ -13,7 +12,6 @@
       <a class="navbar-brand" href="<%- config.root %><%= page.lang === config.language['0'] ? '' : page.lang + '/' %>"><% if (theme.navbar_brand){ %><%- theme.navbar_brand %><% } else { %><%= config.title %><% } %></a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
       <div class="collapse navbar-collapse" id="main-menu-navbar">
         <ul class="nav navbar-nav navbar-right">
@@ -34,7 +32,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= page.lang %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <% config.language.filter(function (l) { return page.lang != l && l !== 'default' }).forEach(function (lang, idx) { %>
+                <% config.language.filter(function (l) { return l !== page.lang && l !== 'default' }).forEach(function (lang, idx) { %>
                   <li><a href="<%= idx === '0' ? config.root : '/' + lang + '/' %>"><%= lang %></a></li>
                 <% })%>
               </ul>
