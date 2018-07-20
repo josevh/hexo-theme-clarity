@@ -175,6 +175,14 @@ td.code pre .line {
     max-width: 50%;
 }
 
+.article-nav-link-wrap > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 15px);
+    display: inline-block;
+}
+
 /**
   * blog index 
   */
