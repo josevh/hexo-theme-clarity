@@ -184,3 +184,26 @@ td.code pre .line {
     border-top: 1px solid rgb(238, 238, 238);
     margin-top: 15px;
 }
+
+#content.blog-main .article.article-type-post {
+    padding-bottom: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+#content.blog-main .article.article-type-post:first-of-type {
+    border-top: none;
+}
+
+#content.blog-main footer.article-footer {
+    border-top: none;
+}
+
+#content.blog-main .article-more-link {
+    margin-bottom: 0;
+}
+
+#content.blog-main .article-tag-list-item {
+    margin-right: 0;
+    margin-left: 15px;
+}
