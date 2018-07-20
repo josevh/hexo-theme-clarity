@@ -207,3 +207,7 @@ td.code pre .line {
     margin-right: 0;
     margin-left: 15px;
 }
+
+#content.blog-main .article-date:before {
+    content: unset;
+}
