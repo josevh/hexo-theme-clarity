@@ -11,7 +11,7 @@
                 </button>
             <% } %>
             <a class="navbar-brand"
-               href="<%- config.root %> <%= page.lang === config.language['0'] ? '' : page.lang + '/' %>">
+               href="<%- config.root %><%= page.lang === config.language['0'] ? '' : page.lang + '/' %>">
                 <% if (theme.navbar_brand){ %>
                     <%- theme.navbar_brand %>
                 <% } else { %>
