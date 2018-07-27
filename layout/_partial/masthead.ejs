@@ -1,51 +1,60 @@
 <nav id="top-nav" class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      <% } %>
-      <a class="navbar-brand" href="<%- config.root %><%= page.lang === config.language['0'] ? '' : page.lang + '/' %>"><% if (theme.navbar_brand){ %><%- theme.navbar_brand %><% } else { %><%= config.title %><% } %></a>
-    </div>
-
-    <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
-      <div class="collapse navbar-collapse" id="main-menu-navbar">
-        <ul class="nav navbar-nav navbar-right">
-          <% if (config.index_generator.path !== ''){ %>
-            <li class="<%= path.indexOf(config.index_generator.path + '/') !== -1 ? 'active' : '' %>">
-              <% if (page.lang === config.language['0']){ %>
-                <a href="<%- url_for(config.index_generator.path) %>"><%= config.index_generator.path %></a>
-              <% } else { %>
-                <a href="<%- url_for(page.lang + '/' + config.index_generator.path) %>"><%= config.index_generator.path %></a>
-              <% } %>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             <% } %>
-          </li>
-          <% site.pages.filter(function(p){ return p.in_nav && p.lang === page.lang; }).forEach(function(p){ %>
-              <li class="<%= is_current(p.path) ? 'active' : '' %>">
-                <a href="<%- url_for(p.path) %>"><%= p.title %></a></li>
-          <% }); %>
-          <% if (config.language !== null && config.language.length > 2){ %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= page.lang %> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% config.language.filter(function (l) { return l !== page.lang && l !== 'default' }).forEach(function (lang, idx) { %>
-                  <li><a href="<%= config.language[0] === lang ? config.root : '/' + lang + '/' %>"><%= lang %></a></li>
-                <% })%>
-              </ul>
-            </li>
-          <% } %>
-          <!--
-            <% if (theme.rss){ %>
-              <li><a href="<%- theme.rss %>" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
-            <% } %>
-          -->
-        </ul>
+            <a class="navbar-brand"
+               href="<%- config.root %> <%= page.lang === config.language['0'] ? '' : page.lang + '/' %>">
+                <% if (theme.navbar_brand){ %>
+                    <%- theme.navbar_brand %>
+                <% } else { %>
+                    <%= config.title %>
+                <% } %>
+            </a>
+        </div>
 
-      </div><!-- /.navbar-collapse -->
-    <% } %>
-  </div><!-- /.container-fluid -->
+        <% if (config.index_generator.path !== '' || site.pages.length > 0 || config.language.length > 2) { %>
+            <div class="collapse navbar-collapse" id="main-menu-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (config.index_generator.path !== ''){ %>
+                        <li class="<%= path.indexOf(config.index_generator.path + '/') !== -1 ? 'active' : '' %>">
+                            <% if (page.lang === config.language['0']){ %>
+                                <a href="<%- url_for(config.index_generator.path) %>"><%= config.index_generator.path %></a>
+                            <% } else { %>
+                                <a href="<%- url_for(page.lang + '/' + config.index_generator.path) %>"><%= config.index_generator.path %></a>
+                            <% } %>
+                        </li>
+                    <% } %>
+                    <% site.pages.filter(function (p) {
+                        return p.in_nav && p.lang === page.lang;
+                    }).forEach(function(p){ %>
+                        <li class="<%= is_current(p.path) ? 'active' : '' %>">
+                            <a href="<%- url_for(p.path) %>"><%= p.title %></a></li>
+                    <% }); %>
+                    <% if (config.language !== null && config.language.length > 2){ %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"><%= page.lang %> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <% config.language.filter(function (l) {
+                                    return l !== page.lang && l !== 'default'
+                                }).forEach(function (lang, idx) { %>
+                                    <li>
+                                        <a href="<%= config.language[0] === lang ? config.root : '/' + lang + '/' %>"><%= lang %></a>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </li>
+                    <% } %>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        <% } %>
+    </div><!-- /.container-fluid -->
 </nav>

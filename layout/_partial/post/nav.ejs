@@ -1,41 +1,41 @@
 <% if (post.prev || post.next){ %>
 <ul id="article-nav" class="nav nav-pills nav-justified">
-  <%
-    var nextPost = null;
-    do {
-      if (!post.next || post.next.lang === post.lang) {
-        nextPost = post.next;
-      } else {
-        post.next = post.next.next;
-      }
-    } while (post.next && nextPost === null);
-  %>
-  <% if (nextPost){ %>
-  <li role="presentation">
-    <a href="<%- url_for(nextPost.path) %>" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title"><%= nextPost.title || '(no title)' %></span>
-    </a>
-  </li>
-  <% } %>
-  <%
-    var prevPost = null;
-    do {
-      if (!post.prev || post.prev.lang === post.lang) {
-        prevPost = post.prev;
-      } else {
-        post.prev = post.prev.prev;
-      }
-    } while (post.prev && prevPost === null);
-  %>
-  
-  <% if (prevPost){ %>
-  <li role="presentation">
-    <a href="<%- url_for(prevPost.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title"><%= prevPost.title || '(no title)' %></span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  <% } %>
+    <%
+        var nextPost = null;
+        do {
+            if (!post.next || post.next.lang === post.lang) {
+                nextPost = post.next;
+            } else {
+                post.next = post.next.next;
+            }
+        } while (post.next && nextPost === null);
+    %>
+    <% if (nextPost){ %>
+    <li role="presentation">
+        <a href="<%- url_for(nextPost.path) %>" id="article-nav-older" class="article-nav-link-wrap">
+            <i class="fa fa-chevron-left pull-left"></i>
+            <span class="article-nav-link-title"><%= nextPost.title || '(no title)' %></span>
+        </a>
+    </li>
+    <% } %>
+    <%
+        var prevPost = null;
+        do {
+            if (!post.prev || post.prev.lang === post.lang) {
+                prevPost = post.prev;
+            } else {
+                post.prev = post.prev.prev;
+            }
+        } while (post.prev && prevPost === null);
+    %>
+
+    <% if (prevPost){ %>
+    <li role="presentation">
+        <a href="<%- url_for(prevPost.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
+            <span class="article-nav-link-title"><%= prevPost.title || '(no title)' %></span>
+            <i class="fa fa-chevron-right pull-right"></i>
+        </a>
+    </li>
+    <% } %>
 </ul>
 <% } %>
